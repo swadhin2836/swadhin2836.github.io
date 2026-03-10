@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Md Shahporan Swadhin | Economist</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1a1612;
+      --paper: #f5f0e8;
+      --accent: #8b3a2a;
+      --muted: #7a7166;
+      --rule: #d4cdc2;
+      --sidebar: 280px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      background: var(--paper);
+      color: var(--ink);
+      min-height: 100vh;
+      display: flex;
+    }
+
+    /* ── SIDEBAR ── */
+    aside {
+      width: var(--sidebar);
+      min-height: 100vh;
+      position: fixed;
+      top: 0; left: 0;
+      background: var(--ink);
+      color: var(--paper);
+      display: flex;
+      flex-direction: column;
+      padding: 3rem 2rem;
+      z-index: 100;
+    }
+
+    .portrait {
+      width: 90px; height: 90px;
+      border-radius: 50%;
+      background: #3a2e24;
+      border: 2px solid var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem;
+      font-family: 'DM Mono', monospace;
+      color: var(--paper);
+      margin-bottom: 1.5rem;
+      flex-shrink: 0;
+      letter-spacing: -1px;
+    }
+
+    aside h1 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      line-height: 1.3;
+      margin-bottom: 0.3rem;
+    }
+
+    .title-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.2rem;
+    }
+
+    .institution {
+      font-size: 0.85rem;
+      color: #b0a898;
+      font-style: italic;
+      margin-bottom: 2.5rem;
+      line-height: 1.4;
+    }
+
+    nav { flex: 1; }
+
+    nav a {
+      display: block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #b0a898;
+      text-decoration: none;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #2e2720;
+      transition: color 0.2s;
+    }
+
+    nav a:hover, nav a.active { color: var(--paper); }
+    nav a::before { content: '→ '; color: var(--accent); }
+
+    .contact-block {
+      margin-top: 2rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: #7a6e62;
+      line-height: 2;
+    }
+
+    .contact-block a { color: var(--accent); text-decoration: none; }
+    .contact-block a:hover { color: var(--paper); }
+
+    /* ── MAIN ── */
+    main {
+      margin-left: var(--sidebar);
+      flex: 1;
+      max-width: 860px;
+      padding: 5rem 4rem;
+    }
+
+    section {
+      margin-bottom: 5rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    section:nth-child(1) { animation-delay: 0.1s; }
+    section:nth-child(2) { animation-delay: 0.2s; }
+    section:nth-child(3) { animation-delay: 0.3s; }
+    section:nth-child(4) { animation-delay: 0.4s; }
+    section:nth-child(5) { animation-delay: 0.5s; }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    /* About */
+    .about-text {
+      font-size: 1.2rem;
+      line-height: 1.85;
+      font-weight: 300;
+      max-width: 620px;
+    }
+
+    .about-text em { color: var(--accent); font-style: italic; }
+
+    .interests {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      padding: 0.3rem 0.75rem;
+      border: 1px solid var(--rule);
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    /* Papers */
+    .paper {
+      border-left: 2px solid var(--rule);
+      padding: 0 0 0 1.5rem;
+      margin-bottom: 2.5rem;
+      transition: border-color 0.2s;
+    }
+
+    .paper:hover { border-color: var(--accent); }
+
+    .paper-status {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    .paper h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-bottom: 0.5rem;
+    }
+
+    .paper .coauthors {
+      font-size: 0.9rem;
+      color: var(--muted);
+      font-style: italic;
+      margin-bottom: 0.75rem;
+    }
+
+    .paper .abstract {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #3a3028;
+    }
+
+    .paper .jmp-badge {
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: var(--accent);
+      color: white;
+      padding: 0.2rem 0.5rem;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+
+    /* CV */
+    .cv-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .cv-section h4 {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .cv-item {
+      margin-bottom: 1.25rem;
+    }
+
+    .cv-item .degree {
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .cv-item .where {
+      font-size: 0.9rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .cv-item .when {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+    }
+
+    .cv-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink);
+      border: 1px solid var(--ink);
+      padding: 0.6rem 1.2rem;
+      text-decoration: none;
+      margin-top: 2rem;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .cv-download:hover { background: var(--ink); color: var(--paper); }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      aside {
+        width: 100%;
+        min-height: auto;
+        position: relative;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.5rem;
+      }
+      .portrait { width: 60px; height: 60px; font-size: 1.2rem; margin: 0; }
+      nav { width: 100%; display: flex; flex-wrap: wrap; gap: 0; }
+      nav a { border-bottom: none; border-right: 1px solid #2e2720; padding: 0.3rem 0.8rem; }
+      .contact-block { width: 100%; margin-top: 0.5rem; }
+      main { margin-left: 0; padding: 2.5rem 1.5rem; }
+      .cv-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<aside>
+  <div class="portrait">MS</div>
+  <h1>Md Shahporan Swadhin</h1>
+  <div class="title-tag">PhD Candidate · Economics</div>
+  <div class="institution">Sam M. Walton College of Business<br>University of Arkansas</div>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#research">Research</a>
+    <a href="#cv">CV</a>
+  </nav>
+
+  <div class="contact-block">
+    <div><a href="mailto:mswadhin@uark.edu">mswadhin@uark.edu</a></div>
+    <div>479-332-8476</div>
+    <div><a href="https://linkedin.com/in/md-shahporan-swadhin-82b4a4194" target="_blank">LinkedIn ↗</a></div>
+    <div>Fayetteville, AR 72701</div>
+  </div>
+</aside>
+
+<main>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-label">About</div>
+    <p class="about-text">
+      I am a third-year PhD candidate in Economics at the University of Arkansas. My research sits at the intersection of <em>development, labor, and health economics</em> — examining how early-life exposures, healthcare policy, and industrial shocks shape long-run human capital and welfare outcomes in low-income settings, with a primary focus on Bangladesh.
+    </p>
+    <p class="about-text" style="margin-top:1rem;">
+      I am currently a Distinguished Doctoral Fellow and a Research Assistant on a USDA-funded nutrition and machine vision project. I also teach undergraduate economics.
+    </p>
+    <div class="interests">
+      <span class="tag">Development Economics</span>
+      <span class="tag">Labor Economics</span>
+      <span class="tag">Health Economics</span>
+      <span class="tag">Political Economy</span>
+    </div>
+  </section>
+
+  <!-- RESEARCH -->
+  <section id="research">
+    <div class="section-label">Research</div>
+
+    <div class="paper">
+      <div class="paper-status">Working Paper</div>
+      <h3>Paying for Birth: Do Vouchers Raise Facility Delivery and Reduce Mortality? Evidence from Bangladesh</h3>
+      <div class="coauthors">with Md Amzad Hossain and Moin Uddin Ahmed</div>
+      <p class="abstract">Finds a 27 percent reduction in stillbirths using a staggered difference-in-differences design across 51 subdistricts, with the largest effects concentrated among poor and urban households.</p>
+    </div>
+
+    <div class="paper">
+      <div class="paper-status">Work in Progress</div>
+      <h3>Early-Life Arsenic Exposure and Long-Run Labor Market Outcomes: Evidence from a Staggered Mitigation Campaign in Bangladesh <span class="jmp-badge">JMP</span></h3>
+      <div class="coauthors">Advisor: Md Amzad Hossain</div>
+      <p class="abstract">Uses a triple-difference design exploiting a UNICEF mitigation campaign rollout across 45 subdistricts to estimate whether early-life arsenic exposure reduction generates adult labor market gains in the long run.</p>
+    </div>
+
+    <div class="paper">
+      <div class="paper-status">Work in Progress</div>
+      <h3>Industrial Disruption and Women's Lives: Evidence from the Rana Plaza Collapse in Bangladesh</h3>
+      <div class="coauthors">Advisor: Md Amzad Hossain</div>
+      <p class="abstract">Examines how post-2013 garment sector restructuring affected women's marriage, fertility, autonomy, and domestic violence outcomes using a local labor market exposure design.</p>
+    </div>
+
+    <div class="paper">
+      <div class="paper-status">Work in Progress</div>
+      <h3>The Effect of Coastal Climate Resilient Infrastructure Project (CCRIP) on Women in Environmentally Vulnerable Areas in Bangladesh</h3>
+      <div class="coauthors">Advisor: Md Amzad Hossain</div>
+    </div>
+
+  </section>
+
+  <!-- CV -->
+  <section id="cv">
+    <div class="section-label">CV</div>
+
+    <div class="cv-grid">
+      <div class="cv-section">
+        <h4>Education</h4>
+
+        <div class="cv-item">
+          <div class="degree">PhD in Economics</div>
+          <div class="where">University of Arkansas</div>
+          <div class="when">2023 – Present</div>
+        </div>
+        <div class="cv-item">
+          <div class="degree">MA in Economics</div>
+          <div class="where">University of Arkansas</div>
+          <div class="when">2023 – 2024</div>
+        </div>
+        <div class="cv-item">
+          <div class="degree">MSS in Economics</div>
+          <div class="where">University of Dhaka</div>
+          <div class="when">2022 – 2023</div>
+        </div>
+        <div class="cv-item">
+          <div class="degree">BSS in Economics</div>
+          <div class="where">University of Dhaka</div>
+          <div class="when">2017 – 2021</div>
+        </div>
+      </div>
+
+      <div class="cv-section">
+        <h4>Honors & Fellowships</h4>
+        <div class="cv-item">
+          <div class="degree">Distinguished Doctoral Fellow</div>
+          <div class="where">University of Arkansas</div>
+          <div class="when">2023 – Present</div>
+        </div>
+        <div class="cv-item">
+          <div class="degree">Bachelor's of Social Sciences Scholarship</div>
+          <div class="where">University of Dhaka</div>
+          <div class="when">2023</div>
+        </div>
+        <div class="cv-item">
+          <div class="degree">Governor Scholarship</div>
+          <div class="where">University of Dhaka</div>
+          <div class="when">2021</div>
+        </div>
+
+        <h4 style="margin-top:2rem;">Skills</h4>
+        <div class="cv-item">
+          <div class="degree">Software</div>
+          <div class="where">Stata · R · Python</div>
+        </div>
+        <div class="cv-item">
+          <div class="degree">Languages</div>
+          <div class="where">Bengali (Native) · English (Fluent)</div>
+        </div>
+      </div>
+
+      <div class="cv-section">
+        <h4>Research Experience</h4>
+        <div class="cv-item">
+          <div class="degree">Research Assistant</div>
+          <div class="where">University of Arkansas (PIs: Brownback, Li, Luu, McFadden)</div>
+          <div class="when">2024 – Present</div>
+        </div>
+        <div class="cv-item">
+          <div class="degree">Research Associate</div>
+          <div class="where">Policy Research Institute, Dhaka</div>
+          <div class="when">Feb 2023</div>
+        </div>
+        <div class="cv-item">
+          <div class="degree">Research Assistant</div>
+          <div class="where">Unnayan Onneshan, Dhaka</div>
+          <div class="when">2022</div>
+        </div>
+      </div>
+
+      <div class="cv-section">
+        <h4>Teaching</h4>
+        <div class="cv-item">
+          <div class="degree">Primary Instructor</div>
+          <div class="where">Basic Economics (Fall '24, Spring '25)<br>Principles of Microeconomics (Fall '25)</div>
+          <div class="when">2024 – Present</div>
+        </div>
+        <div class="cv-item">
+          <div class="degree">Graduate Teaching Assistant</div>
+          <div class="where">University of Arkansas</div>
+          <div class="when">2023 – 2024</div>
+        </div>
+      </div>
+    </div>
+
+    <a class="cv-download" href="Cv_Shahporan.pdf" target="_blank">↓ Download Full CV</a>
+  </section>
+
+</main>
+
+<script>
+  // Active nav on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav a');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(a => a.classList.remove('active'));
+        const active = document.querySelector(`nav a[href="#${e.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
